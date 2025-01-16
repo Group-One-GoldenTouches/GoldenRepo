@@ -1,0 +1,204 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #d8cbb3, #9F8069); /* الخلفية الأصلية */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+    animation: fadeIn 1s ease-out; /* تأثير ظهور الصفحة */
+  }
+  
+  .profile-container {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    padding: 30px;
+    text-align: center;
+    margin-top: 10px;
+    opacity: 0;
+    animation: slideIn 0.8s ease-out forwards; /* إضافة انزلاق تدريجي للعنصر */
+  }
+  
+  @keyframes slideIn {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+  }
+  
+  h1 {
+    font-size: 28px;
+    color: #9F8069;
+    margin-bottom: 20px;
+    animation: fadeInText 1.2s ease-out; /* تأثير ظهور العنوان */
+  }
+  
+  @keyframes fadeInText {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+  }
+  
+  p {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 15px;
+    padding: 12px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    transition: all 0.3s ease;
+    opacity: 0;
+    animation: fadeInField 1.5s ease-out forwards; /* تأثير ظهور الحقول */
+  }
+  
+  @keyframes fadeInField {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+  }
+  
+  p:hover {
+    background-color: #e7e7e7;
+    border-color: #9F8069;
+  }
+  
+  button {
+    padding: 12px 25px;
+    font-size: 16px;
+    background-color: #9F8069;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+    transition: background-color 0.3s ease, transform 0.2s;
+    opacity: 0;
+    animation: fadeInButton 1.8s ease-out forwards; /* إضافة ظهور الأزرار تدريجيًا */
+  }
+  
+  @keyframes fadeInButton {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+  }
+  
+  button:hover {
+    background-color: #7A5C47;
+    transform: scale(1.05); /* تكبير الزر عند التمرير */
+  }
+  
+  /* Edit Profile Section */
+  #editProfile {
+    display: none;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    text-align: left;
+    animation: slideIn 0.8s ease-out forwards; /* إضافة انزلاق للظهور */
+  }
+  
+  form input {
+    width: 100%;
+    padding: 14px;
+    margin: 12px 0;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    background-color: #fff;
+    color: #333;
+    transition: border 0.3s ease;
+    opacity: 0;
+    animation: fadeInInput 1.5s ease-out forwards; /* تأثير ظهور الحقول في الفورم */
+    display: none; /* إخفاء الحقول إلا عند التعديل */
+  }
+  
+  @keyframes fadeInInput {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+  }
+  
+  form input:focus {
+    border-color: #9F8069;
+    outline: none;
+  }
+  
+  form button {
+    padding: 14px;
+    background-color: #9F8069;
+    color: white;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-top: 15px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+  }
+  
+  form button:hover {
+    background-color: #7A5C47;
+  }
+  
+  /* Responsive Styles */
+  @media screen and (max-width: 768px) {
+    .profile-container {
+        padding: 20px;
+        max-width: 100%;
+    }
+  
+    h1 {
+        font-size: 24px;
+    }
+  
+    button {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+  
+    p {
+        font-size: 16px;
+    }
+  
+    form input {
+        font-size: 14px;
+        padding: 12px;
+    }
+  }
+  
+  /* When Editing, Show Relevant Fields */
+  #editProfile.active input {
+    display: block; /* إظهار الحقول فقط عند التعديل */
+  }
+  

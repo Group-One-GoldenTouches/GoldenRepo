@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile</title>
+  <link rel="stylesheet" href="userPage.css">
+</head>
+
+<body>
+  <div class="profile-container">
+    <h1>User Profile</h1>
+    <div id="userProfile">
+      <!-- User info will be displayed here -->
+      <p id="userName"></p>
+      <p id="userEmail"></p>
+      <p id="userAge"></p>
+      <p id="userCategories"></p>
+    </div>
+
+    <button id="editButton">Edit Profile</button>
+
+    <div id="editProfile" style="display: none;">
+      <h2>Edit Profile</h2>
+      <form id="editForm">
+        <input type="text" id="editFirstName" placeholder="First Name">
+        <input type="text" id="editLastName" placeholder="Last Name">
+        <input type="email" id="editEmail" placeholder="Email">
+        <input type="number" id="editAge" placeholder="Age">
+        <input type="text" id="editCategories" placeholder="Gift Categories">
+        <button type="submit">Save Changes</button>
+      </form>
+    </div>
+
+    <button id="logoutButton">Log Out</button>
+  </div>
+  <Script>document.getElementById("editButton").addEventListener("click", function () {
+      document.getElementById("editProfile").classList.toggle("active");
+    });</Script>
+  <script type="module" src="UserPage.js"></script>
+</body>
+
+</html>
