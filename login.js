@@ -19,6 +19,8 @@ const app = initializeApp(firebaseConfig);
 // Initialize Firebase Authentication
 const auth = getAuth(app);
 
+const provider = new GoogleAuthProvider();
+
 // Get references to the form elements
 const loginForm = document.getElementById("loginForm");
 const emailInput = document.getElementById("email");
@@ -36,7 +38,7 @@ loginForm.addEventListener("submit", (event) => {
     .then((userCredential) => {
       const user = userCredential.user;
       console.log("Logged in successfully: ", user);
-      window.location.href = "userPage.html"; // or another page
+      window.location.href = "userPage.html"; 
     })
     .catch((error) => {
       console.error("Error signing in with email and password: ", error.message);
@@ -46,13 +48,12 @@ loginForm.addEventListener("submit", (event) => {
 
 // Function to handle Google sign-in
 googleSignInBtn.addEventListener("click", () => {
-  const provider = new GoogleAuthProvider();
 
   signInWithPopup(auth, provider)
     .then((result) => {
       const user = result.user;
       console.log("Logged in with Google: ", user);
-      window.location.href = "home.html"; // or another page
+      window.location.href = "userPage.html"; 
     })
     .catch((error) => {
       console.error("Error during Google sign-in: ", error.message);
