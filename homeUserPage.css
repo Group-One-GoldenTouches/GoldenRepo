@@ -8,12 +8,100 @@ body {
   font-family: 'Figtree', sans-serif;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: auto 170px;
+  grid-template-rows: 90px auto 170px;
   color: black;
 }
 
 /*================================Nav Bar=================================*/
+
+a {
+    color: white;
+    text-decoration: none;
+}
+#userprofile{display: flex;
+gap: 30px;
+margin-right: 10px;
+margin-left: 70px;
+margin-top: 13px;}
+
+.logospan{
+  font-family: "Monotype Corsiva", "Cursive", sans-serif;
+  font-size: 35px;
+  margin-bottom: -10px !important;
+}
+
 nav {
+  grid-column: span 12;
+  grid-row: 1;
+  z-index: 10;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.navbar {
+  background-color: White !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+.nav-link {
+  color: black !important;
+  margin: 0 10px;
+  font-size: 14px;
+}
+
+
+.nav-link.active {
+  font-weight: bold;
+  color: White !important;
+  width: 80px;
+  height: 35px;
+  border-radius: 12px;
+  text-align: center;
+  background-color: #9F8069;
+  box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.25);
+}
+
+.nav-item .signup-btn {
+  font-size: 14px;
+  color: black !important;
+  width: 90px;
+  height: 35px;
+  border-radius: 18px;
+  border: none;
+  text-align: center;
+  background-color: White;
+  margin-left: 100px;
+  box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.25);
+}
+
+.nav-item .signup-btn:hover {
+  background-color: black;
+  color: White !important;
+}
+
+
+.nav-link:hover {
+  color: #9F8069 !important;
+}
+
+nav img {
+  width: 40px;
+  height: 40px;
+}
+
+nav p {
+  margin: 0px;
+  font-size: 24px;
+}
+.container-fluid {
+  margin-left: 75px;
+  margin-right: 110px;
+}
+#active-nav:hover{
+  color: black !important;
+}
+
+/*
+ nav {
   grid-column: span 12;
   grid-row: 1;
   z-index: 10;
@@ -33,7 +121,7 @@ nav {
   top: 0;
   left: 0;
   height: 80px;
-  width: 100%; /* Ensure the nav spans the full width of the viewport */
+  width: 100%; 
   z-index: 1000;
 }
 
@@ -44,7 +132,7 @@ nav {
   transition: transform 1s linear; 
 }
 
-/*active nav item*/
+
 .nav-link.active {
   font-weight: bold;
   color: White !important;
@@ -74,7 +162,7 @@ nav {
   color: White !important;
 }
 
-/*underline effect for active nav item*/
+
 .nav-link:hover {
   color: #9F8069 !important;
 }
@@ -93,14 +181,14 @@ nav p {
   margin-left: 75px;
   margin-right: 110px;
 }
-
+------*/
 /*===================================page content==================================*/
 /*=================================================================================*/
 .main-content {
   display: flex;
   flex-direction: column;
   grid-column: span 12;
-  grid-row: 1;
+  grid-row: 2;
 }
 
 .main-content .hero {
@@ -134,9 +222,13 @@ nav p {
   transform: translateX(50px);
   animation: slideUp 2s ease-out forwards;
 }
-
+#welcome-message {
+  font-size: 40px;
+}
 .hero .txt div:nth-child(1) {
   font-size: 38px;
+  margin-bottom: 15px;
+  font-weight: bold;
   font-family: 'Figtree', sans-serif;
 }
 .hero .txt div:nth-child(1) > span {
@@ -147,10 +239,10 @@ nav p {
 
 .hero .txt div:nth-child(2) {
   font-size: 38px;
-  color: #9F8069;
   margin-top: -16px;
   font-family: 'Figtree', sans-serif;
   font-weight: bold;
+  line-height: 47px;
 }
 
 .hero .txt div:nth-child(3) {
@@ -468,6 +560,14 @@ section:nth-child(2) {
     font-size: 18px;
     margin: 10px 0;
   }
+
+  .slider-container .price {
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    margin-left: 15px;
+    align-self: flex-start;
+  }
   
   .slider-container p {
     font-size: 12px;
@@ -515,6 +615,7 @@ section:nth-child(2) {
     display: flex;
     justify-content: space-between;
     padding: 0px 5px;
+    margin-left: 10px;
   }
   .slider-container .card-btns div{
     cursor: pointer;
@@ -699,7 +800,6 @@ section:nth-child(2) {
     border-top: 1px solid #ddd;
     padding: 20px 40px;
     text-align: center;
-    grid-row: 2;
   }
   
   .footer-container {
@@ -783,4 +883,3 @@ section:nth-child(2) {
     font-size: 12px;
     color: #888;
   }
-

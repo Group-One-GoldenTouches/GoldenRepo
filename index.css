@@ -132,7 +132,10 @@ nav p {
 
 .hero .txt div:nth-child(1) {
   font-size: 38px;
+  margin-bottom: 15px;
+  font-weight: bold;
   font-family: 'Figtree', sans-serif;
+  color: black;
 }
 .hero .txt div:nth-child(1) > span {
   font-size: 38px;
@@ -142,10 +145,10 @@ nav p {
 
 .hero .txt div:nth-child(2) {
   font-size: 38px;
-  color: #9F8069;
   margin-top: -16px;
   font-family: 'Figtree', sans-serif;
   font-weight: bold;
+  line-height: 47px;
 }
 
 .hero .txt div:nth-child(3) {
