@@ -6,9 +6,48 @@
     <title>Contact Us - Gift Center</title>
     <!-- Link to Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
+    <!--Box Icons-->
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="contactUsPage.css">    
 </head>
 <body>
+
+        <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg border-bottom">
+    <div class="container-fluid">
+      <!-- Logo -->
+      <p class="navbar-brand fw-bold">
+        <img src="./imagesHome/logo.png" alt="logo"> <span class="logospan"> <span style="color:#9F8069;">Golden</span>Touch</span>
+      </p>
+      <!-- Toggler for mobile view -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Navbar Items -->
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="./shopPage.html">Shop</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="./aboutUsPage.html">Who We Are</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active text-white fw-bold position-relative" href="./contactUsPage.html">Contact Us</a>
+          </li>
+          <li class="nav-item">
+            <button class="signup-btn" id="signup-btn">Sign Up</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
     <!-- Contact Us Section -->
     <div class="container mt-5">
@@ -53,12 +92,56 @@
         </div>
     </div>
 
+    
+  <!--===================Footer==========================-->
+  <footer class="footer">
+    <div class="footer-container">
+      <!-- Logo and Name -->
+      <div class="footer-logo">
+        <p class="navbar-brand fw-bold" id="logo-icon">
+        <img src="./imagesHome/logo.png" alt="logo-icon"> <span class="logospan"> <span style="color:#9F8069;">Golden</span>Touch</span>
+        </p>
+      </div>
+      
+      <!-- Navigation Links -->
+      <div class="footer-links">
+        <ul>
+          <li class="active">Home</li>
+          <li><a href="#">Shop</a></li>
+          <li><a href="#">Sign Up</a></li>
+        </ul>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      
+      <!-- Social Media -->
+      <div class="footer-social">
+        <span>Find Us on</span>
+        <div class="social-icons">
+          <i class='bx bxl-facebook-square bx-sm'></i>
+          <i class='bx bxl-instagram-alt bx-sm' ></i>
+          <i class='bx bxl-gmail bx-sm' ></i>
+          <i class='bx bxl-whatsapp bx-sm' ></i>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Copyright ©2020 All rights reserved</p>
+    </div>
+  </footer>
+  
+
+
     <!-- Firebase & Script for Handling Form Submission -->
     <script type="module" src="contactUsPage.js">
       
     </script>
 
     <!-- Bootstrap JS & Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 
