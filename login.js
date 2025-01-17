@@ -38,7 +38,7 @@ loginForm.addEventListener("submit", (event) => {
     .then((userCredential) => {
       const user = userCredential.user;
       console.log("Logged in successfully: ", user);
-      window.location.href = "userPage.html"; 
+      window.location.href = "./homeUserPage.html"; 
     })
     .catch((error) => {
       console.error("Error signing in with email and password: ", error.message);
