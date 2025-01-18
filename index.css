@@ -112,11 +112,11 @@ nav p {
 @keyframes slideUp {
   0% {
     opacity: 0;
-    transform: translateX(50px);
+    transform: translateY(50px);
   }
   100% {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateY(0);
   }
 }
 /*=================Hero ==================*/
@@ -783,3 +783,188 @@ section:nth-child(2) {
     color: #888;
   }
 
+  /**********pop up***********************/
+  .modal button {
+    padding: 10px 20px;
+    background-color:#9F8069;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .modal button:hover {
+    background-color:#947253;
+  }
+  
+  /* Modal styles */
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+  }
+  
+  .modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 50%;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .close-btn:hover {
+    color: black;
+  }
+
+ /*********************************************************************/
+  /*************************media query*********************************/
+  @media (max-width: 768px) {
+    /* Navbar adjustments */
+    .navbar-toggler {
+      position: absolute;
+      right: 10px; /* Adjust position */
+      top: 20px;
+      background-color: #9F8069;
+    }
+    .navbar-toggler-icon {
+      background-color:#9F8069;
+    }
+    .navbar-collapse {
+      background-color: white; /* Dropdown menu background */
+      text-align: center;
+      z-index: 1;
+    }
+    .nav-link {
+      color: #10050B !important; /* Update link color for dropdown */
+      display: block; /* Stack links vertically */
+      margin: 10px 0;
+    }
+
+    /*hero section*/
+    section:nth-child(1) .logo-img img {
+      display: none;
+    }
+    
+    .hero .txt div:nth-child(1),
+    .hero .txt div:nth-child(2) {
+      font-size: 24px;
+      margin-left: 50px;
+      margin-right: 50px;
+    }
+
+    .hero .txt div:nth-child(3) {
+      display: none;
+    }
+    /* Hero section adjustments */
+    .main-content section:nth-child(1) {
+      flex-direction: column;
+      text-align: center;
+    }
+    .main-content section:nth-child(1) .txt {
+      width: 100%; /* Adjust width for smaller screens */
+      margin: 10px 0;
+    }
+    .main-content section:nth-child(1) .txt div:nth-child(4) {
+      display: none;
+    }
+    /* Buttons */
+    section:nth-child(1) .btns button {
+      width: 150px;
+      margin: 10px 0;
+      font-size: 12px;
+    }
+   
+    /* Footer*/
+    body {
+      grid-template-columns: 1fr;
+      grid-template-rows: 90px auto;
+    }
+    .footer-container {
+      flex-direction: column;
+      align-items: center;
+    }
+    .footer-logo {
+      margin-bottom: 20px;
+    }
+  
+    .footer-links {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .footer-social {
+      text-align: center;
+    }
+
+    section:nth-child(2) {
+    margin: 20px 10px;
+  }
+  section:nth-child(2) .projects {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+ 
+
+  /* Slider section */
+  .slider-container {
+    margin: 30px 10px;
+  }
+  .slider-container .slider-wrapper {
+    width: 300px;
+  }
+  .slider-container .card {
+    flex: 0 0 90%;
+    height: 400px;
+    margin: 10px 0;
+  }
+  .slider-container .slider-btn.prev {
+    left: 10px;
+  }
+  .slider-container .slider-btn.next {
+    right: 10px;
+  }
+  
+  /* Search bar */
+  .form {
+    max-width: 100%;
+    padding: 5px 10px;
+  }
+
+  /* Offers section */
+  .offer {
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 10px;
+  }
+
+
+  .offers .offer-card {
+    width: 90%;
+    margin-bottom: 20px;
+  }
+
+  /* General adjustments for smaller text */
+  h2 {
+    font-size: 24px;
+  }
+  p {
+    font-size: 14px;
+  }
+  }/*# sourceMappingURL=home.css.map */
