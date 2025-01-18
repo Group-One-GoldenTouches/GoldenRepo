@@ -229,6 +229,59 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-analytics.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCfytV7PtN2LIrv8jBlqsLRGQeGtVe4LqY",
+            authDomain: "golden-f43ab.firebaseapp.com",
+            projectId: "golden-f43ab",
+            storageBucket: "golden-f43ab.firebasestorage.app",
+            messagingSenderId: "314092349099",
+            appId: "1:314092349099:web:9449b624f50ac93c5d39ee",
+            measurementId: "G-PYNZ6QXR40"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const db = getFirestore(app);  
+
+       
+        async function getCartItems() {
+            const querySnapshot = await getDocs(collection(db, "cart"));
+            let total = 0;
+
+            querySnapshot.forEach((doc) => {
+                const product = doc.data();  
+                const productName = product.name;  
+                const productPrice = product.price; 
+                const productQuantity = product.quantity;  
+                const productTotal = productPrice * productQuantity; 
+
+           
+                const productList = document.querySelector(".checkout__proceed__product ul");
+                const li = document.createElement("li");
+                li.innerHTML = `${productQuantity}x ${productName} <span>$${productTotal.toFixed(2)}</span>`;
+                productList.appendChild(li);
+
+             
+                total += productTotal;
+            });
+
+          
+            const subtotal = document.querySelector(".checkout__proceed__total .subtotal");
+            const totalElement = document.querySelector(".checkout__proceed__total .total");
+            subtotal.innerHTML = `Subtotal <span>$${total.toFixed(2)}</span>`;
+            totalElement.innerHTML = `Total <span>$${total.toFixed(2)}</span>`;
+        }
+
+        getCartItems();
+    </script>
+
 
 </body>
 
