@@ -31,10 +31,10 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link text-white" href="./homeUserPage.html">Home</a>
+            <a class="nav-link active text-white fw-bold position-relative" id="active-nav" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active text-white fw-bold position-relative" id="active-nav" href="#">Shop</a>
+            <a class="nav-link text-white" href="./shopPage.html">Shop</a>
           </li>
         </li>
         <li class="nav-item">
@@ -64,26 +64,25 @@
               <div>In The Perfect Place for Gifting Accessories!</div>
               <div>we believe that every gift tells a story, and we're here to help you create moments of joy and connection</div>
           </div>
-          <!-- <div class="search-bar">
-            <div class="icon left">
+  
+          <div style="position: relative; width: 100%;">
+            <form id="search-form" class="form">
+              <button>
                 <i class='bx bx-search-alt'></i>
-            </div>
-            <input type="text" placeholder="Search for gifts by keyword..." />
-            <div class="icon right">
-                <i class='bx bx-send'></i>
-            </div>
-          </div> -->
-          <form class="form">
-            <button>
-                <i class='bx bx-search-alt'></i>
-            </button>
-            <input class="input" placeholder="Type your text" required="" type="text">
-            <i class='bx bx-send'></i>
-            </button>
-        </form>
+              </button>
+              <input
+                id="search-input"
+                class="input"
+                placeholder="Type your text"
+                required
+                type="text"
+              />
+            </form>
+            <div id="search-results"></div> <!-- Results container -->
+          </div>
 
           <div class="btns">
-              <button><a href="./shop.html"> Shop Now</a></button>
+              <button><a href="./shopPage.html"> Shop Now</a></button>
           </div>
       </div>
       <div class="logo-img"><img src="./imagesHome/hero.png" alt="hero"></div>
@@ -215,7 +214,7 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-analytics.js";
     import { getAuth,onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
-    import { getFirestore, collection, addDoc, getDoc,getDocs, doc, deleteDoc, updateDoc } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
+    import { getFirestore,query,where, collection, addDoc, getDoc,getDocs, doc, deleteDoc, updateDoc } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
   
@@ -341,6 +340,22 @@ function attachAddToCartEvent(button, productData) {
   });
 }
 
+function attachFavoriteEvent(button) {
+  button.addEventListener("click", () => {
+    const heartIcon = button.querySelector("i");
+    if (heartIcon) {
+      // Toggle between the "empty heart" and "filled heart" icons
+      if (heartIcon.classList.contains("bx-heart")) {
+        heartIcon.classList.remove("bx-heart");
+        heartIcon.classList.add("bxs-heart");
+      } else {
+        heartIcon.classList.remove("bxs-heart");
+        heartIcon.classList.add("bx-heart");
+      }
+    }
+  });
+}
+
 function renderCard(productData) {
   const card = document.createElement("div");
   card.classList.add("card");
@@ -398,6 +413,7 @@ function renderCard(productData) {
   addBox.appendChild(doneIcon);
   addToCartBtn.appendChild(addBox);
 
+  attachFavoriteEvent(addToFav);
   // Attach add-to-cart event
   attachAddToCartEvent(addToCartBtn, productData);
 
@@ -418,6 +434,85 @@ function renderCard(productData) {
   document.addEventListener("DOMContentLoaded", () => {
     fetchAndRenderProducts();
   });
+
+
+
+  //search ==================================================================
+  //================================================================
+  // Firebase setup (initialize Firestore, etc.)
+// Assuming `db` is already initialized for Firestore
+
+const searchForm = document.getElementById("search-form");
+const searchInput = document.getElementById("search-input");
+const searchResults = document.getElementById("search-results");
+
+// Hide search results by default
+searchResults.style.display = "none";
+
+searchForm.addEventListener("submit", async (event) => {
+  event.preventDefault(); // Prevent form submission
+  const queryText = searchInput.value.trim().toLowerCase(); // Get and normalize the search input
+
+  // Hide search results if input is empty
+  if (!queryText) {
+    searchResults.style.display = "none";
+    return;
+  }
+
+  try {
+    // Reference to the products collection
+    const productsCollection = collection(db, "products");
+
+    // Fetch all documents in the collection
+    const querySnapshot = await getDocs(productsCollection);
+
+    // Clear any previous search results
+    searchResults.innerHTML = "";
+
+    // Filter results using regex
+    const regex = new RegExp(queryText, "i"); // Case-insensitive regex for partial match
+    const matchingProducts = [];
+
+    querySnapshot.forEach((doc) => {
+      const productData = doc.data();
+      if (regex.test(productData.name)) {
+        matchingProducts.push({ id: doc.id, ...productData });
+      }
+    });
+
+    if (matchingProducts.length > 0) {
+      // Display the results container
+      searchResults.style.display = "block";
+
+      // Iterate over matching products
+      matchingProducts.forEach((product) => {
+        // Create a clickable search result
+        const resultItem = document.createElement("div");
+        resultItem.classList.add("search-result-item");
+        resultItem.textContent = product.name;
+
+        // Add click event to navigate to the product page
+        resultItem.addEventListener("click", () => {
+          window.location.href = `productPage.html?productId=${product.id}`;
+        });
+
+        // Append the result to the search results container
+        searchResults.appendChild(resultItem);
+      });
+    } else {
+      // Display "No results found" if no products match
+      searchResults.style.display = "block";
+      searchResults.textContent = "No results found.";
+    }
+  } catch (error) {
+    console.error("Error fetching search results:", error);
+    searchResults.style.display = "block";
+    searchResults.textContent = "An error occurred. Please try again.";
+  }
+});
+
+
+
 
 
     </script>
