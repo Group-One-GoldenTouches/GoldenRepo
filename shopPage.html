@@ -4,14 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!--Font-->
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
     <!--Box Icons-->
-  <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- My CSS file-->
-  <link rel="stylesheet" href="./shopPage.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <!-- My CSS file-->
+    <link rel="stylesheet" href="./shopPage.css">
 </head>
 <body>
    <!-- Navbar -->
@@ -41,12 +43,10 @@
         <li class="nav-item">
           <a class="nav-link text-white" href="./contactUsPage.html">Contact Us</a>
         </li>
-
           <li id="userprofile" class="nav-item">
-            <i class="fa-solid fa-user"></i>
-                <i class="fa-solid fa-heart"></i>
-                <i class="fa-solid fa-basket-shopping"></i>
-
+            <a href="./userPage.html"><i class="fa-solid fa-user"></i></a>
+            <a href="#"><i class="fa-solid fa-heart"></i></a>
+            <a href="cartPage.html"><i class="fa-solid fa-basket-shopping"></i></a>
           </li>
         </ul>
       </div>
@@ -181,105 +181,115 @@
       console.error("Error fetching products:", error);
     }
   }
-
-  // Function to render a single card using createElement
-  function renderCard(product) {
-    // Create main card container
-    const card = document.createElement("div");
-    card.classList.add("card");
-
-    // Create image placeholder
-    const imagePlaceholder = document.createElement("div");
-    imagePlaceholder.classList.add("image-placeholder");
-
-    const img = document.createElement("img");
-    
-    img.setAttribute("src", product.image);
-    imagePlaceholder.appendChild(img);
-
-    // Create card head
-    const cardHead = document.createElement("div");
-    cardHead.classList.add("card-head");
-
-    const title = document.createElement("h3");
-    title.textContent = product.name || "Product Name";
-
-    const starRating = document.createElement("div");
-    starRating.classList.add("star-rating");
-    starRating.textContent = "★★★★☆";
-
-    cardHead.appendChild(title);
-    cardHead.appendChild(starRating);
-
-    // Create description
-    const description = document.createElement("p");
-    description.textContent = product.description || "No description available.";
-
-    // Create price
-    const price = document.createElement("div");
-    price.classList.add("price");
-    price.textContent = `Price: ${product.price || "N/A"} JD`;
-
-    // Create card buttons
-    const cardBtns = document.createElement("div");
-    cardBtns.classList.add("card-btns");
-
-    // Add to favorites button
-    const addToFav = document.createElement("div");
-    addToFav.classList.add("add-to-fav");
-    const heartIcon = document.createElement("i");
-    heartIcon.classList.add("bx", "bx-heart", "bx-sm");
-    addToFav.appendChild(heartIcon);
-
-    //change the icon if user clicked on it
-    addToFav.addEventListener("click", function () {
-    if (heartIcon.classList.contains("bx-heart")) {
-      heartIcon.classList.remove("bx-heart");
-      heartIcon.classList.add("bxs-heart");
-    } else {
-      heartIcon.classList.remove("bxs-heart");
-      heartIcon.classList.add("bx-heart");
+  //check the user and send data to firebase
+  async function addToCart(productData, userId) {
+  try {
+    if (!userId) {
+      console.error("User not logged in. Cannot add to cart.");
+      return;
     }
-  });
 
-    // Add to cart button
-    const addToCart = document.createElement("button");
-    addToCart.classList.add("add-to-cart");
+    const cartCollection = collection(db, "cart");
+    await addDoc(cartCollection, {
+      userId: userId,
+      name: productData.name,
+      price: productData.price,
+      description: productData.description,
+      image: productData.image,
+    });
 
-    const addBox = document.createElement("div");
-    addBox.classList.add("add-box");
-
-    const addText = document.createElement("a");
-    addText.textContent = "Add to Cart";
-
-    const loader = document.createElement("div");
-    loader.classList.add("loader");
-
-    const done = document.createElement("div");
-    done.classList.add("done");
-    const checkIcon = document.createElement("i");
-    checkIcon.classList.add("bx", "bx-check", "bx-sm");
-    done.appendChild(checkIcon);
-
-    addBox.appendChild(addText);
-    addBox.appendChild(loader);
-    addBox.appendChild(done);
-
-    addToCart.appendChild(addBox);
-
-    // Append buttons to cardBtns
-    cardBtns.appendChild(addToFav);
-    cardBtns.appendChild(addToCart);
-
-    // Append all parts to card
-    card.appendChild(imagePlaceholder);
-    card.appendChild(cardHead);
-    card.appendChild(description);
-    card.appendChild(price);
-    card.appendChild(cardBtns);
-
-    return card;
+    console.log("Product added to cart successfully!");
+  } catch (error) {
+    console.error("Error adding product to cart:", error);
   }
+}
+
+function attachAddToCartEvent(button, productData) {
+  button.addEventListener("click", async () => {
+    const user = auth.currentUser; // Get the currently logged-in user
+    if (!user) {
+      alert("You need to log in to add products to the cart!");
+      return;
+    }
+    const userId = user.uid;
+
+    // Call addToCart function with product data and userId
+    await addToCart(productData, userId);
+  });
+}
+
+function renderCard(productData) {
+  const card = document.createElement("div");
+  card.classList.add("card");
+
+  const imagePlaceholder = document.createElement("div");
+  imagePlaceholder.classList.add("image-placeholder");
+  const img = document.createElement("img");
+  img.src = productData.image;
+  img.alt = productData.name;
+  imagePlaceholder.appendChild(img);
+
+  const cardHead = document.createElement("div");
+  cardHead.classList.add("card-head");
+  const h3 = document.createElement("h3");
+  h3.textContent = productData.name;
+  cardHead.appendChild(h3);
+
+  const starRating = document.createElement("div");
+  starRating.classList.add("star-rating");
+  starRating.textContent = "★★★★☆";
+  cardHead.appendChild(starRating);
+
+  const description = document.createElement("p");
+  description.textContent = productData.description;
+
+  const price = document.createElement("div");
+  price.classList.add("price");
+  price.textContent = `Price: ${productData.price} JD`;
+
+  const cardBtns = document.createElement("div");
+  cardBtns.classList.add("card-btns");
+
+  const addToFav = document.createElement("div");
+  addToFav.classList.add("add-to-fav");
+  const heartIcon = document.createElement("i");
+  heartIcon.classList.add("bx", "bx-heart", "bx-sm");
+  addToFav.appendChild(heartIcon);
+
+  const addToCartBtn = document.createElement("button");
+  addToCartBtn.classList.add("add-to-cart");
+  const addBox = document.createElement("div");
+  addBox.classList.add("add-box");
+  const addText = document.createElement("a");
+  addText.textContent = "Add to Cart";
+  const loader = document.createElement("div");
+  loader.classList.add("loader");
+  const doneIcon = document.createElement("div");
+  doneIcon.classList.add("done");
+  const checkIcon = document.createElement("i");
+  checkIcon.classList.add("bx", "bx-check", "bx-sm");
+  doneIcon.appendChild(checkIcon);
+
+  addBox.appendChild(addText);
+  addBox.appendChild(loader);
+  addBox.appendChild(doneIcon);
+  addToCartBtn.appendChild(addBox);
+
+  // Attach add-to-cart event
+  attachAddToCartEvent(addToCartBtn, productData);
+
+  cardBtns.appendChild(addToFav);
+  cardBtns.appendChild(addToCartBtn);
+
+  card.appendChild(imagePlaceholder);
+  card.appendChild(cardHead);
+  card.appendChild(description);
+  card.appendChild(price);
+  card.appendChild(cardBtns);
+
+  return card;
+}
+
 
   // Call the function on page load
 //   document.addEventListener("DOMContentLoaded", () => {
