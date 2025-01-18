@@ -174,7 +174,7 @@
 
     // Render each product
     querySnapshot.forEach((productDoc) => {
-      const cardElement = renderCard(productDoc.data());
+      const cardElement = renderCard(productDoc.data() ,productDoc.id);
       cardsContainer.appendChild(cardElement);
     });
     } catch (error) {
@@ -217,8 +217,7 @@ function attachAddToCartEvent(button, productData) {
     await addToCart(productData, userId);
   });
 }
-
-function renderCard(productData) {
+function renderCard(productData, product_ID) {
   const card = document.createElement("div");
   card.classList.add("card");
 
@@ -269,6 +268,11 @@ function renderCard(productData) {
   const checkIcon = document.createElement("i");
   checkIcon.classList.add("bx", "bx-check", "bx-sm");
   doneIcon.appendChild(checkIcon);
+
+  // Attach a click event to the whole card to navigate to the product page
+  card.addEventListener("click", () => {
+    window.location.href = `./ProductPage.html?id=${product_ID}`;
+  });
 
   addBox.appendChild(addText);
   addBox.appendChild(loader);
