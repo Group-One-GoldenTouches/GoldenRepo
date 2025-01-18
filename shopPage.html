@@ -217,6 +217,23 @@ function attachAddToCartEvent(button, productData) {
     await addToCart(productData, userId);
   });
 }
+
+function attachFavoriteEvent(button) {
+  button.addEventListener("click", () => {
+    const heartIcon = button.querySelector("i");
+    if (heartIcon) {
+      // Toggle between the "empty heart" and "filled heart" icons
+      if (heartIcon.classList.contains("bx-heart")) {
+        heartIcon.classList.remove("bx-heart");
+        heartIcon.classList.add("bxs-heart");
+      } else {
+        heartIcon.classList.remove("bxs-heart");
+        heartIcon.classList.add("bx-heart");
+      }
+    }
+  });
+}
+
 function renderCard(productData, product_ID) {
   const card = document.createElement("div");
   card.classList.add("card");
@@ -279,6 +296,8 @@ function renderCard(productData, product_ID) {
   addBox.appendChild(doneIcon);
   addToCartBtn.appendChild(addBox);
 
+
+  attachFavoriteEvent(addToFav);
   // Attach add-to-cart event
   attachAddToCartEvent(addToCartBtn, productData);
 
