@@ -42,7 +42,7 @@ onAuthStateChanged(auth, async (user) => {
     }
   } else {
     // Redirect to login page if not authenticated
-    window.location.href = "login.html";
+    window.location.href = "../htmlPages/login.html";
   }
 });
 
@@ -93,7 +93,7 @@ editForm.addEventListener('submit', async (e) => {
 // Log out user
 logoutButton.addEventListener('click', () => {
   signOut(auth).then(() => {
-    window.location.href = 'login.html'; // Redirect to login page after logout
+    window.location.href = '../htmlPages/login.html'; // Redirect to login page after logout
   }).catch((error) => {
     console.error('Error signing out:', error);
   });

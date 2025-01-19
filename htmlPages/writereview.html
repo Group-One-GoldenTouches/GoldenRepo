@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="ProductPage.css">
+    <link rel="stylesheet" href="../css pages/ProductPage.css">
     <title>Write a Review</title>
 </head>
 <body class="body-review">
@@ -87,17 +87,17 @@
             try {
                 // Add the review to Firestore
                 await addDoc(collection(db, "reviews"), {
-                    productId,  // Save product ID
+                    productId,  
                     name,
                     email,
                     rating: parseInt(rating),
                     reviewTitle,
                     reviewBody,
-                    timestamp: Timestamp.now(),  // Timestamp for when the review was submitted
+                    timestamp: Timestamp.now(),  
                 });
 
                 alert("Review submitted successfully!");
-                window.location.href = `ProductPage.html?id=${productId}`; // Redirect back to the product page
+                window.location.href = `htmlPages/ProductPage.html?id=${productId}`; 
             } catch (error) {
                 console.error("Error submitting review: ", error);
                 alert("Error submitting review. Please try again.");

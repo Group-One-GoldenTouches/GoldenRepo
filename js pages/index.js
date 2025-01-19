@@ -34,7 +34,7 @@ dots.forEach((dot, index) => {
 let toSignUp = document.getElementById("signup-btn");
 
 toSignUp.addEventListener("click", ()=>{
-    window.location.href="./login.html";
+    window.location.href="../htmlPages/login.html";
 });
 
 
@@ -62,7 +62,7 @@ function popUp(){
 
   // Redirect to signup page when "Go to Sign Up" button is clicked
   goToSignupBtn.addEventListener('click', () => {
-    window.location.href = 'registration.html'; // Replace 'signup.html' with your signup page URL
+    window.location.href = '../htmlPages/registration.html'; // Replace 'signup.html' with your signup page URL
   });
 
   // Close the modal if the user clicks outside the modal content

@@ -59,7 +59,7 @@ registrationForm.addEventListener("submit", async (e) => {
         alert(`Welcome, ${firstName}! Your account has been created successfully.`);
 
         // Redirect to homepage after registration
-        window.location.href = "login.html"; // Change to your homepage URL
+        window.location.href = "../htmlPages/login.html"; // Change to your homepage URL
 
     } catch (error) {
         // Handle registration errors
