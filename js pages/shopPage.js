@@ -31,7 +31,7 @@ if (event.target.closest(".add-to-cart")) {
     setTimeout(() => {
         console.log("Added to cart for this button!");
     }, 500);
-    }, 2000);
+    }, 1000);
 }
 });
       
