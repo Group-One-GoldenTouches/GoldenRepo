@@ -1,3 +1,13 @@
+const projectDivs = document.querySelectorAll('.projects > div');
+
+// Loop through each div and add a click event listener
+projectDivs.forEach((div) => {
+  div.addEventListener('click', () => {
+    window.location.href = '../htmlPages/shopPage.html'; 
+  });
+});
+
+
 const sliderWrapper = document.querySelector(".slider-wrapper");
 const dots = document.querySelectorAll(".dot");
 const prevBtn = document.querySelector(".prev");
