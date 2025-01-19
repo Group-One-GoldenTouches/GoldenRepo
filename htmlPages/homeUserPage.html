@@ -21,7 +21,7 @@
     <div class="container-fluid">
       <!-- Logo -->
       <p class="navbar-brand fw-bold">
-        <img src="./imagesHome/logo.png" alt="logo"> <span class="logospan"> <span style="color:#9F8069;">Golden</span>Touch</span>
+        <img src="../imagesHome/logo.png" alt="logo"> <span class="logospan"> <span style="color:#9F8069;">Golden</span>Touch</span>
       </p>
       <!-- Toggler for mobile view -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -93,7 +93,7 @@
   <section>
     <div>Explore Gifts By Category</div>
     <div class="projects">
-      <div>
+      <div class>
           <img src="https://i.pinimg.com/736x/bd/fa/84/bdfa849a27618197905b0d1d7a4c855f.jpg" alt="Image 2">
           <div class="text-overlay">
               <h3>For Her</h3>
@@ -175,7 +175,7 @@
       <!-- Logo and Name -->
       <div class="footer-logo">
         <p class="navbar-brand fw-bold" id="logo-icon">
-        <img src="./imagesHome/logo.png" alt="logo-icon"> <span class="logospan"> <span style="color:#9F8069;">Golden</span>Touch</span>
+        <img src="../imagesHome/logo.png" alt="logo-icon"> <span class="logospan"> <span style="color:#9F8069;">Golden</span>Touch</span>
         </p>
       </div>
       
@@ -287,13 +287,13 @@ auth.onAuthStateChanged((user) => {
 
       // Render each product to new slider
       products.forEach((product) => {
-        const cardElement = renderCard(product);
+        const cardElement = renderCard(product,product.id);
         cardsContainer.appendChild(cardElement);
       });
 
       // Render each product to top rated slider
       products.forEach((product) => {
-        const cardElement = renderCard(product);
+        const cardElement = renderCard(product,product.id);
         cardsContainer2.appendChild(cardElement);
       });
 
@@ -356,7 +356,7 @@ function attachFavoriteEvent(button) {
   });
 }
 
-function renderCard(productData) {
+function renderCard(productData, product_ID) {
   const card = document.createElement("div");
   card.classList.add("card");
 
@@ -407,6 +407,10 @@ function renderCard(productData) {
   const checkIcon = document.createElement("i");
   checkIcon.classList.add("bx", "bx-check", "bx-sm");
   doneIcon.appendChild(checkIcon);
+
+  card.addEventListener("click", () => {
+    window.location.href = `./ProductPage.html?id=${product_ID}`;
+  });
 
   addBox.appendChild(addText);
   addBox.appendChild(loader);
@@ -518,6 +522,6 @@ searchForm.addEventListener("submit", async (event) => {
     </script>
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="./homeUserPage.js"></script>
+  <script src="../js pages/homeUserPage.js"></script>
 </body>
 </html>

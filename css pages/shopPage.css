@@ -124,7 +124,7 @@ a {
     align-items: center;
     height: 450px;
     background-image: linear-gradient(to right, rgba(233, 226, 210, 0.86) 0%, rgba(237, 232, 220, 0.68) 23%, rgba(255, 255, 255, 0) 100%)
-   , url('./imagesHome/hero2.jpg');
+   , url('../imagesHome/hero2.jpg');
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat; 

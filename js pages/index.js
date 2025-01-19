@@ -31,30 +31,25 @@ dots.forEach((dot, index) => {
 });
 
 
+
+
 let toSignUp = document.getElementById("signup-btn");
 
 toSignUp.addEventListener("click", ()=>{
-    window.location.href="../htmlPages/login.html";
+    window.location.href="../htmlPages/registration.html";
 });
 
 
 
 // Get modal elements
 const modal = document.getElementById('signupModal');
-const addToCartBtn = document.getElementById('addToCartBtn');
 const closeModal = document.getElementById('closeModal');
 const goToSignupBtn = document.getElementById('goToSignupBtn');
 
-
-
-// Show the modal when "Add to Cart" is clicked
-addToCartBtn.addEventListener('click', () => {
-  popUp();
-
-});
-
-function popUp(){
+// Function to show the modal
+function popUp() {
   modal.style.display = 'block';
+
   // Close the modal when the "X" button is clicked
   closeModal.addEventListener('click', () => {
     modal.style.display = 'none';
@@ -62,7 +57,7 @@ function popUp(){
 
   // Redirect to signup page when "Go to Sign Up" button is clicked
   goToSignupBtn.addEventListener('click', () => {
-    window.location.href = '../htmlPages/registration.html'; // Replace 'signup.html' with your signup page URL
+    window.location.href = '../htmlPages/registration.html'; // Replace with your signup page URL
   });
 
   // Close the modal if the user clicks outside the modal content
@@ -72,3 +67,13 @@ function popUp(){
     }
   });
 }
+
+// Select all "Add to Cart" buttons
+const addToCartButtons = document.querySelectorAll('.add-to-cart');
+
+// Add click event listener to each button
+addToCartButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    popUp();
+  });
+});
