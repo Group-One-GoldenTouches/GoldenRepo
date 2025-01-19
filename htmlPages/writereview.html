@@ -69,7 +69,7 @@
 
         if (!productId) {
             alert("Product ID is missing in the URL.");
-            window.location.href = "shop.html"; // Redirect to shop if no product ID
+            window.location.href = "../htmlPages/shopPage.html"; // Redirect to shop if no product ID
         }
 
         // Handle form submission
@@ -97,7 +97,7 @@
                 });
 
                 alert("Review submitted successfully!");
-                window.location.href = `htmlPages/ProductPage.html?id=${productId}`; 
+                window.location.href = `../htmlPages/ProductPage.html?id=${productId}`; 
             } catch (error) {
                 console.error("Error submitting review: ", error);
                 alert("Error submitting review. Please try again.");
