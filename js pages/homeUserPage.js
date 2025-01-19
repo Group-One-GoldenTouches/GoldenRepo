@@ -74,7 +74,7 @@ document.addEventListener("click", function (event) {
       setTimeout(() => {
           console.log("Added to cart for this button!");
       }, 500);
-      }, 1500);
+      }, 1000);
   }
   });
 

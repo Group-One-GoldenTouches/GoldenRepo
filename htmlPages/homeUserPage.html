@@ -408,7 +408,7 @@ function renderCard(productData, product_ID) {
   checkIcon.classList.add("bx", "bx-check", "bx-sm");
   doneIcon.appendChild(checkIcon);
 
-  card.addEventListener("click", () => {
+  img.addEventListener("click", () => {
     window.location.href = `./ProductPage.html?id=${product_ID}`;
   });
 
