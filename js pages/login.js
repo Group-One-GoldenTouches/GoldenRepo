@@ -1,6 +1,6 @@
 // Import the necessary Firebase libraries
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
 
 // Your Firebase configuration object
 const firebaseConfig = {
@@ -19,13 +19,15 @@ const app = initializeApp(firebaseConfig);
 // Initialize Firebase Authentication
 const auth = getAuth(app);
 
-const provider = new GoogleAuthProvider();
+const googleProvider = new GoogleAuthProvider();
+const facebookProvider = new FacebookAuthProvider();
 
 // Get references to the form elements
 const loginForm = document.getElementById("loginForm");
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 const googleSignInBtn = document.getElementById("googleSignIn");
+const facebookSignInBtn = document.getElementById("facebookSignIn");
 
 // Function to handle email/password login
 loginForm.addEventListener("submit", (event) => {
@@ -42,14 +44,13 @@ loginForm.addEventListener("submit", (event) => {
     })
     .catch((error) => {
       console.error("Error signing in with email and password: ", error.message);
-      alert("Invalid credentials or error during login.");
+      alert("Invalid Email or Password during login.");
     });
 });
 
 // Function to handle Google sign-in
 googleSignInBtn.addEventListener("click", () => {
-
-  signInWithPopup(auth, provider)
+  signInWithPopup(auth, googleProvider)
     .then((result) => {
       const user = result.user;
       console.log("Logged in with Google: ", user);
@@ -58,5 +59,19 @@ googleSignInBtn.addEventListener("click", () => {
     .catch((error) => {
       console.error("Error during Google sign-in: ", error.message);
       alert("An error occurred during Google sign-in.");
+    });
+});
+
+// Function to handle Facebook sign-in
+facebookSignInBtn.addEventListener("click", () => {
+  signInWithPopup(auth, facebookProvider)
+    .then((result) => {
+      const user = result.user;
+      console.log("Logged in with Facebook: ", user);
+      window.location.href = "../htmlPages/userPage.html"; 
+    })
+    .catch((error) => {
+      console.error("Error during Facebook sign-in: ", error.message);
+      alert("An error occurred during Facebook sign-in.");
     });
 });
