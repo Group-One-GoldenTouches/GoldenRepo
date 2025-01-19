@@ -290,9 +290,8 @@ a {
   }
 
   .cards-grid .price {
-    font-size: 18px;
+    font-size: 16px;
     margin-bottom: 20px;
-    font-weight: bold;
     margin-left: 15px;
     align-self: flex-start;
   }
