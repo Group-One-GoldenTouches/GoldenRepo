@@ -38,7 +38,7 @@ loginForm.addEventListener("submit", (event) => {
     .then((userCredential) => {
       const user = userCredential.user;
       console.log("Logged in successfully: ", user);
-      window.location.href = "./homeUserPage.html"; 
+      window.location.href = "../htmlPages/homeUserPage.html"; 
     })
     .catch((error) => {
       console.error("Error signing in with email and password: ", error.message);
@@ -53,7 +53,7 @@ googleSignInBtn.addEventListener("click", () => {
     .then((result) => {
       const user = result.user;
       console.log("Logged in with Google: ", user);
-      window.location.href = "userPage.html"; 
+      window.location.href = "../htmlPages/userPage.html"; 
     })
     .catch((error) => {
       console.error("Error during Google sign-in: ", error.message);
